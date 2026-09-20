@@ -123,6 +123,7 @@ Photos live in **`assets/images/`** (JPG or WebP, ideally under 400 KB each).
 |------|----------|
 | `couple.jpg`   | The arched portrait at the top of the invitation card (`<figure class="card__photo">` in `index.html`). Replace the file to swap the photo; keep it roughly 4:5 or wider. |
 | `og-image.jpg` | 1200×630 preview shown when the link is shared on WhatsApp / social. Regenerate it from a new photo if you change `couple.jpg`. |
+| `madhurai-veeran.png` | Line-art illustration shown above the blessing lines at the top of the invitation (`<section class="blessings">`). Works best as dark line art on a white background. |
 
 To add more photos, use a relative path and always include `loading="lazy"` and meaningful `alt` text:
 

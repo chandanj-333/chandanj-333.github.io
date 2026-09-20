@@ -204,7 +204,6 @@
     <div class="hero__glow" aria-hidden="true"></div>
     <div class="hero__mandala" aria-hidden="true"><svg><use href="#mandala"/></svg></div>
     <div class="hero__frame" aria-hidden="true"></div>
-    <svg class="hero__toran" aria-hidden="true"><use href="#toran"/></svg>
     <svg class="hero__corner hero__corner--tl" aria-hidden="true"><use href="#orn-corner"/></svg>
     <svg class="hero__corner hero__corner--tr" aria-hidden="true"><use href="#orn-corner"/></svg>
     <svg class="hero__corner hero__corner--bl" aria-hidden="true"><use href="#orn-corner"/></svg>
@@ -225,14 +224,18 @@
     </h1>
 
     <p class="hero__invite">invite you to celebrate their wedding</p>
-    <p class="hero__date">
-      <span class="hero__date-rule" aria-hidden="true"></span>
-      <span class="hero__date-text"><span>Wednesday</span><i aria-hidden="true">·</i><span>11 November 2026</span><i aria-hidden="true">·</i><span>Bengaluru</span></span>
-      <span class="hero__date-rule" aria-hidden="true"></span>
-    </p>
+    <dl class="hero__events">
+      <div class="hero__event">
+        <dt class="hero__event-label">Reception</dt>
+        <dd class="hero__event-when">Tuesday, 10 November 2026<span class="hero__event-time">7:00 PM onwards</span></dd>
+      </div>
+      <div class="hero__event">
+        <dt class="hero__event-label">Muhurtham</dt>
+        <dd class="hero__event-when">Wednesday, 11 November 2026<span class="hero__event-time">9:30 AM – 10:30 AM</span></dd>
+      </div>
+    </dl>
 
     <button id="openBtn" class="btn btn--gold hero__cta" type="button"><span>Open Invitation</span></button>
-    <p class="hero__hint">Tap to open</p>
   </div>
 </header>
 
@@ -245,6 +248,7 @@
   <!-- Blessings -->
   <section class="blessings" aria-label="Traditional blessings">
     <div class="blessings__inner">
+      <div class="blessings__top">
       <svg class="diya diya--l reveal reveal--soft" viewBox="0 0 120 140" aria-hidden="true">
         <circle class="diya__glow" cx="60" cy="56" r="40" fill="url(#gradGlow)"/>
         <g class="diya__flame">
@@ -256,11 +260,9 @@
         <path d="M18 98 H102 C 100 116, 84 126, 60 126 C 36 126, 20 116, 18 98 Z" fill="url(#gradBrass)"/>
         <path d="M44 128 H76 L 82 136 H 38 Z" fill="url(#gradBrass)"/>
       </svg>
-
-      <div class="blessings__text reveal">
-        <p class="blessings__main"><strong>||&nbsp;Sri Madhurai Veeran Swamy Thunai&nbsp;||</strong></p>
-      </div>
-
+      <figure class="deity reveal reveal--soft">
+        <img src="assets/images/madhurai-veeran.png" alt="Sri Madhurai Veeran" width="402" height="621" loading="lazy" decoding="async">
+      </figure>
       <svg class="diya diya--r reveal reveal--soft" viewBox="0 0 120 140" aria-hidden="true">
         <circle class="diya__glow" cx="60" cy="56" r="40" fill="url(#gradGlow)"/>
         <g class="diya__flame">
@@ -272,6 +274,11 @@
         <path d="M18 98 H102 C 100 116, 84 126, 60 126 C 36 126, 20 116, 18 98 Z" fill="url(#gradBrass)"/>
         <path d="M44 128 H76 L 82 136 H 38 Z" fill="url(#gradBrass)"/>
       </svg>
+      </div>
+      <div class="blessings__text reveal" style="--d:160ms">
+        <p class="blessings__main"><strong>||&nbsp;Sri Madhurai Veeran Thunai&nbsp;||</strong></p>
+        <p class="blessings__main"><strong>||&nbsp;Sri Sellandi Amman Thunai&nbsp;||</strong></p>
+      </div>
     </div>
   </section>
 
@@ -570,7 +577,7 @@
 <audio id="bgm" loop preload="none" aria-hidden="true"></audio>
 
 <noscript>
-  <style>.hero{position:static;min-height:0}.page{visibility:visible}.reveal{opacity:1!important;transform:none!important;clip-path:none!important}.hero__cta,.hero__hint,.fabs,.petals,.fx,.frame{display:none!important}</style>
+  <style>.hero{position:static;min-height:0}.page{visibility:visible}.reveal{opacity:1!important;transform:none!important;clip-path:none!important}.hero__cta,.fabs,.petals,.fx,.frame{display:none!important}</style>
 </noscript>
 
 <script src="script.js?v=3" defer></script>

@@ -52,8 +52,9 @@
   };
 
   const SHARE_TEXT =
-    "You're invited to celebrate the wedding of Chandan & Swetha ❤️\n" +
-    "11 November 2026\n" +
+    "You're invited to celebrate the wedding of Chandan & Swetha ❤️\n\n" +
+    "Reception: Tuesday, 10 November 2026 · 7:00 PM onwards\n" +
+    "Muhurtham: Wednesday, 11 November 2026 · 9:30 AM – 10:30 AM\n\n" +
     "Soudhamini Kalyana Mantapa, Bengaluru";
 
   const RSVP_TEXT =
