@@ -187,14 +187,6 @@
 <canvas id="petals" class="petals" aria-hidden="true"></canvas>
 <canvas id="fx" class="fx" aria-hidden="true"></canvas>
 
-<!-- Persistent card frame around the viewport (visible after opening) -->
-<div class="frame" aria-hidden="true">
-  <svg class="frame__corner frame__corner--tl"><use href="#orn-corner"/></svg>
-  <svg class="frame__corner frame__corner--tr"><use href="#orn-corner"/></svg>
-  <svg class="frame__corner frame__corner--bl"><use href="#orn-corner"/></svg>
-  <svg class="frame__corner frame__corner--br"><use href="#orn-corner"/></svg>
-</div>
-
 <!-- ============================================================
      HERO / COVER
      ============================================================ -->
@@ -243,6 +235,13 @@
      MAIN INVITATION
      ============================================================ -->
 <div id="page" class="page" inert aria-hidden="true">
+<!-- Card frame around the whole invitation: corners at the top and the very end of the page -->
+<div class="frame" aria-hidden="true">
+  <svg class="frame__corner frame__corner--tl"><use href="#orn-corner"/></svg>
+  <svg class="frame__corner frame__corner--tr"><use href="#orn-corner"/></svg>
+  <svg class="frame__corner frame__corner--bl"><use href="#orn-corner"/></svg>
+  <svg class="frame__corner frame__corner--br"><use href="#orn-corner"/></svg>
+</div>
 <main id="main">
 
   <!-- Blessings -->
