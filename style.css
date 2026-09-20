@@ -213,7 +213,7 @@ body.is-open .frame { opacity: 1; }
 }
 .hero__frame::after { content: ""; position: absolute; inset: 4px; border: 1px solid rgba(201, 162, 74, .22); }
 .hero__corner {
-  position: absolute; z-index: 1; width: clamp(80px, 22vw, 150px); height: auto; aspect-ratio: 1;
+  position: absolute; z-index: 1; width: clamp(52px, 13vw, 90px); height: auto; aspect-ratio: 1;
   color: var(--gold); opacity: 0; pointer-events: none;
   animation: fadeIn 1.6s var(--ease) 1.2s forwards;
 }
