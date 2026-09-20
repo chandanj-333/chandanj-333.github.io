@@ -149,9 +149,9 @@ a { color: var(--maroon); }
 .fx { z-index: 130; }
 
 /* ==========================================================================
-   Persistent card frame (after opening)
+   Card frame spanning the whole page (after opening)
    ========================================================================== */
-.frame { position: fixed; inset: 0; z-index: 96; pointer-events: none; opacity: 0; transition: opacity 1.4s ease .4s; }
+.frame { position: absolute; inset: 0; z-index: 5; pointer-events: none; opacity: 0; transition: opacity 1.4s ease .4s; }
 body.is-open .frame { opacity: 1; }
 .frame::before, .frame::after { content: ""; position: absolute; border: 1px solid; }
 .frame::before { inset: var(--frame-in); border-color: rgba(201, 162, 74, .5); }
@@ -664,7 +664,11 @@ html.js .reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
 
 /* ---------- Footer ---------- */
 .footer { position: relative; padding: 0 var(--gutter) calc(110px + env(safe-area-inset-bottom)); text-align: center; overflow: hidden; }
-.footer__toran { width: 112%; margin: -2px -6% clamp(36px, 8vw, 60px); height: auto; aspect-ratio: 600 / 96; filter: drop-shadow(0 4px 6px rgba(75, 13, 24, .15)); }
+.footer__toran {
+  width: calc(100% + 2 * var(--gutter)); max-width: none;
+  margin: -2px calc(-1 * var(--gutter)) clamp(36px, 8vw, 60px);
+  height: auto; aspect-ratio: 600 / 96; filter: drop-shadow(0 4px 6px rgba(75, 13, 24, .15));
+}
 .footer__inner { max-width: 600px; margin: 0 auto; }
 .footer__compliments { font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
 .footer__from { margin-top: 8px; font-family: var(--font-serif); font-weight: 600; font-size: clamp(22px, 6vw, 28px); letter-spacing: .1em; color: var(--maroon); }
