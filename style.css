@@ -169,7 +169,7 @@ body.is-open .frame { opacity: 1; }
   position: fixed; inset: 0; z-index: 100;
   display: grid; place-items: center;
   overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
-  padding: max(56px, env(safe-area-inset-top)) var(--gutter) max(48px, env(safe-area-inset-bottom));
+  padding: max(52px, env(safe-area-inset-top)) var(--gutter) max(40px, env(safe-area-inset-bottom));
   color: var(--gold-3);
   background:
     radial-gradient(120% 80% at 50% 0%, rgba(201, 162, 74, .14), transparent 60%),
@@ -217,19 +217,12 @@ body.is-open .frame { opacity: 1; }
   color: var(--gold); opacity: 0; pointer-events: none;
   animation: fadeIn 1.6s var(--ease) 1.2s forwards;
 }
-.hero__corner--tl, .hero__corner--tr { display: none; }   /* the toran owns the top edge */
+.hero__corner--tl { top: 12px; left: 12px; }
+.hero__corner--tr { top: 12px; right: 12px; transform: scaleX(-1); }
 .hero__corner--bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
 .hero__corner--br { bottom: 12px; right: 12px; transform: scale(-1); }
 @keyframes fadeIn { to { opacity: .75; } }
 
-.hero__toran {
-  position: absolute; z-index: 2; top: 0; left: -6%; width: 112%; height: auto; aspect-ratio: 600 / 96;
-  pointer-events: none; transform-origin: top center;
-  animation: toranDrop 1.5s var(--ease) .3s both, sway 7s ease-in-out 1.8s infinite alternate;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35));
-}
-@keyframes toranDrop { from { opacity: 0; transform: translateY(-60%); } to { opacity: 1; transform: none; } }
-@keyframes sway { from { rotate: -.35deg; } to { rotate: .35deg; } }
 
 .hero__gopuram {
   position: absolute; z-index: 1; bottom: 22px; left: 50%; translate: -50% 0;
@@ -254,9 +247,8 @@ body.is-open .frame { opacity: 1; }
 .hero__eyebrow  { animation-delay: 1.4s; }
 .hero__names    { animation-delay: 1.7s; }
 .hero__invite   { animation-delay: 3.0s; }
-.hero__date     { animation-delay: 3.25s; }
-.hero__cta      { animation-delay: 3.5s; }
-.hero__hint     { animation-delay: 3.9s; }
+.hero__events   { animation-delay: 3.25s; }
+.hero__cta      { animation-delay: 3.55s; }
 @keyframes riseIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 @keyframes lineIn { from { opacity: 0; transform: scaleX(.2); } to { opacity: 1; transform: none; } }
 
@@ -268,7 +260,7 @@ body.is-open .frame { opacity: 1; }
 .hero__eyebrow { font-family: var(--font-script); font-size: clamp(28px, 7.5vw, 40px); color: var(--gold-3); line-height: 1.2; }
 
 .hero__names {
-  margin: 18px 0 14px;
+  margin: 14px 0 10px;
   font-family: var(--font-serif); font-weight: 600; line-height: 1;
   font-size: clamp(2.9rem, 12.5vw, 5.4rem);
   letter-spacing: .16em; text-transform: uppercase;
@@ -299,25 +291,37 @@ html.js .hero__names { animation: none; opacity: 1; }   /* letters animate indiv
 @keyframes ampIn { from { opacity: 0; transform: scale(.6) rotate(-8deg); } to { opacity: 1; transform: none; } }
 
 .hero__invite { font-family: var(--font-serif); font-style: italic; font-size: clamp(19px, 5.2vw, 26px); color: var(--gold-3); opacity: .95; }
-.hero__date {
-  margin-top: 14px; width: 100%;
-  display: flex; align-items: center; justify-content: center; gap: 14px;
+.hero__events {
+  margin: 16px 0 0; padding: 0;
+  display: grid; grid-template-columns: 1fr; gap: 14px 0;
+  width: min(100%, 720px);
 }
-.hero__date-rule { display: none; flex: 0 1 70px; height: 1px; background: linear-gradient(90deg, transparent, rgba(228, 199, 120, .7)); }
-.hero__date-rule:last-child { background: linear-gradient(90deg, rgba(228, 199, 120, .7), transparent); }
-.hero__date-text {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px;
-  font-size: 11.5px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-2);
+.hero__event { position: relative; margin: 0; padding: 0 12px; text-align: center; }
+.hero__event-label {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-2);
 }
-.hero__date-text i { font-style: normal; opacity: .55; }
-.hero__cta { margin-top: 34px; min-height: 56px; padding: 0 38px; font-size: 13px; }
+.hero__event-when {
+  margin: 4px 0 0; font-family: var(--font-serif); font-size: clamp(17px, 4.6vw, 21px); font-weight: 500; letter-spacing: .02em; color: var(--gold-3);
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+}
+.hero__event-time { font-family: var(--font-body); font-size: 11.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(243, 226, 174, .75); }
+.hero__event + .hero__event::before {   /* short gold rule between the two on mobile */
+  content: ""; display: block; width: 44px; height: 1px; margin: 0 auto 14px;
+  background: linear-gradient(90deg, transparent, rgba(228, 199, 120, .7), transparent);
+}
+@media (min-width: 600px) {
+  .hero__events { grid-template-columns: 1fr 1fr; gap: 0; }
+  .hero__event-when { white-space: nowrap; }
+  .hero__event + .hero__event::before { position: absolute; left: 0; top: 8%; width: 1px; height: 84%; margin: 0;
+    background: linear-gradient(180deg, transparent, rgba(228, 199, 120, .7), transparent); }
+}
+.hero__cta { margin-top: 28px; min-height: 56px; padding: 0 38px; font-size: 13px; }
 .hero__cta::before {
   content: ""; position: absolute; inset: -7px; border-radius: inherit;
   border: 1px solid rgba(228, 199, 120, .5);
   animation: ringPulse 2.8s ease-out infinite;
 }
 @keyframes ringPulse { 0% { transform: scale(.94); opacity: .9; } 100% { transform: scale(1.14); opacity: 0; } }
-.hero__hint { margin-top: 14px; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: rgba(243, 226, 174, .55); }
 
 /* ==========================================================================
    PAGE & SECTIONS
@@ -398,22 +402,33 @@ html.js .reveal--soft { transform: none; transition-duration: 1.7s; }
 html.js .reveal--line { transform: scaleX(0); transform-origin: 50% 50%; }
 html.js .reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
 
-/* ---------- Blessings ---------- */
-.blessings { padding: clamp(44px, 10vw, 84px) var(--gutter) 0; text-align: center; }
-.blessings__inner {
-  max-width: 860px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr; gap: 14px; align-items: center; justify-items: center;
+/* ---------- Blessings (illustration above the text) ---------- */
+.blessings { padding: clamp(40px, 9vw, 76px) var(--gutter) 0; text-align: center; }
+.blessings__inner { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.blessings__top { display: grid; grid-template-columns: auto auto auto; align-items: end; gap: clamp(16px, 5vw, 44px); }
+.deity { position: relative; margin: 0; }
+.deity::before {   /* soft gold halo behind the line art */
+  content: ""; position: absolute; left: 50%; top: 38%; width: 150%; aspect-ratio: 1; translate: -50% -50%;
+  border-radius: 50%; z-index: 0; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(228, 199, 120, .35), rgba(228, 199, 120, .08) 60%, transparent 75%);
+}
+.deity img {
+  position: relative; z-index: 1; display: block;
+  width: clamp(76px, 20vw, 110px); height: auto;
+  mix-blend-mode: multiply;   /* lets the ivory paper show through the white background */
+  filter: sepia(.35) saturate(.9) contrast(1.05);
 }
 .blessings__main {
   text-wrap: balance;
-  font-family: var(--font-serif); font-weight: 700; font-size: clamp(19px, 5.2vw, 26px);
-  letter-spacing: .14em; text-transform: uppercase; color: var(--maroon);
+  font-family: var(--font-serif); font-weight: 700; font-size: clamp(13px, 3.5vw, 17px);
+  letter-spacing: .12em; text-transform: uppercase; line-height: 1.5; color: var(--maroon);
 }
 .blessings__main strong { font-weight: 700; }
-.diya { width: 72px; height: auto; aspect-ratio: 120 / 140; }
+.blessings__main + .blessings__main { margin-top: 6px; }
+.diya { width: clamp(40px, 10vw, 54px); height: auto; aspect-ratio: 120 / 140; margin-bottom: 8px; }
+.diya--r .diya__flame, .diya--r .diya__glow { animation-delay: -.9s; }
 .diya__flame { transform-origin: 60px 88px; animation: flicker 1.8s ease-in-out infinite alternate; }
 .diya__glow { transform-origin: 60px 56px; animation: glow 1.8s ease-in-out infinite alternate; }
-.diya--r .diya__flame, .diya--r .diya__glow { animation-delay: -.9s; }
 @keyframes flicker {
   0%   { transform: scale(1, 1) rotate(0deg); }
   30%  { transform: scale(.94, 1.06) rotate(-2deg); }
@@ -421,10 +436,6 @@ html.js .reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
   100% { transform: scale(.97, 1.03) rotate(-1deg); }
 }
 @keyframes glow { from { opacity: .7; transform: scale(.92); } to { opacity: 1; transform: scale(1.08); } }
-@media (min-width: 640px) {
-  .blessings__inner { grid-template-columns: auto 1fr auto; gap: 32px; }
-  .diya { width: 88px; }
-}
 
 /* ---------- Invitation card ---------- */
 .card {
@@ -437,7 +448,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
 }
 .card__body {
   position: relative;
-  padding: clamp(92px, 22vw, 136px) clamp(22px, 6vw, 60px) clamp(44px, 9vw, 64px);
+  padding: clamp(92px, 22vw, 112px) clamp(22px, 6vw, 60px) clamp(44px, 9vw, 64px);
   background:
     radial-gradient(120% 90% at 50% 0%, rgba(255, 253, 248, .95), rgba(252, 247, 238, .85) 60%),
     var(--kolam-soft) center / 80px 80px,
@@ -617,7 +628,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
 
 /* ---------- Calendar ---------- */
 .calendar { max-width: 640px; margin: 0 auto; text-align: center; }
-.calendar__diya { width: 64px; height: auto; aspect-ratio: 120 / 140; margin: 0 auto 8px; }
+.calendar__diya { width: 64px; margin-bottom: 0; height: auto; aspect-ratio: 120 / 140; margin: 0 auto 8px; }
 .calendar__text { margin: 14px auto 28px; max-width: 520px; font-size: 15px; color: var(--ink-soft); }
 
 /* ---------- Family (printed-card style, no boxes) ---------- */
@@ -765,11 +776,9 @@ html.js .reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
 /* ==========================================================================
    Larger screens
    ========================================================================== */
-@media (min-width: 600px) { .hero__date-rule { display: block; } }
 @media (min-width: 900px) {
   :root { --frame-in: 14px; }
   .frame__corner { width: 52px; height: 52px; }
-  .hero__toran { left: 0; width: 100%; }
 }
 @media (min-width: 1200px) {
   .hero__content { max-width: 1200px; }
@@ -781,7 +790,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
   .hero__content { transform: scale(.82); }
   .hero__corner, .hero__gopuram { display: none; }
 }
-@media (max-height: 700px) { .hero__gopuram { display: none; } }
+@media (max-height: 900px) and (max-width: 900px) { .hero__gopuram { display: none; } }
 
 /* ==========================================================================
    Reduced motion — disable decorative animation
@@ -793,7 +802,7 @@ html.js .reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
     animation-iteration-count: 1 !important;
     transition-duration: .001ms !important;
   }
-  .hero__content > *, .hero__name .ch, .hero__amp, .hero__corner, .hero__frame, .hero__toran, .hero__gopuram, .hero__glow {
+  .hero__content > *, .hero__name .ch, .hero__amp, .hero__corner, .hero__frame, .hero__gopuram, .hero__glow {
     opacity: 1 !important; transform: none !important; animation: none !important; filter: none !important;
   }
   .hero__gopuram { opacity: .35 !important; }
