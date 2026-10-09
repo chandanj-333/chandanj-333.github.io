@@ -47,21 +47,23 @@ Test on your phone by opening `http://<your-computer-ip>:8080` on the same Wi-Fi
    git add .
    git commit -m "Wedding invitation"
    git branch -M main
-   git remote add origin https://github.com/USERNAME/REPOSITORY.git
+   git remote add origin https://github.com/chandanj-333/chandanj-333.github.io.git
    git push -u origin main
    ```
 3. In the repository go to **Settings → Pages**.
 4. Under **Build and deployment** choose **Source: Deploy from a branch**,
    select **Branch: `main`** and folder **`/ (root)`**, then **Save**.
 5. After a minute the site is live at:
-   `https://USERNAME.github.io/REPOSITORY/`
+   `https://chandanj-333.github.io/`
 
 All asset paths are relative, so the site works in a sub-folder like `/REPOSITORY/`
 as well as at a custom domain root. No configuration needed.
 
 **WhatsApp link preview image:** WhatsApp needs an *absolute* image URL.
-`assets/images/og-image.jpg` is already included. In `index.html`, replace `USERNAME`
-and `REPOSITORY` in the `og:image` meta tag with your real GitHub values.
+`assets/images/og-image.jpg` is included and the `og:image` tag in `index.html` already points at
+`https://chandanj-333.github.io/assets/images/og-image.jpg`. If you move the site to another address,
+update that URL (and `og:url`). WhatsApp caches previews for about a week; to force a refresh, share the
+link with a throwaway query string such as `https://chandanj-333.github.io/?v=2`.
 
 ---
 
