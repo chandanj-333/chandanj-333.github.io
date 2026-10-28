@@ -21,11 +21,15 @@
     wedding:   { title: "Chandan & Swetha - Wedding",   description: "Muhurtham of Chandan & Swetha. Lagnam: Dhanusu. 9:30 AM to 10:30 AM IST.", start: Date.UTC(2026, 10, 11, 4, 0, 0),   end: Date.UTC(2026, 10, 11, 5, 0, 0),   uid: "wedding-20261111@chandan-swetha",   file: "Chandan-Swetha-Wedding.ics" },
     reception: { title: "Chandan & Swetha - Reception", description: "Wedding reception of Chandan & Swetha. 7:00 PM onwards IST.",               start: Date.UTC(2026, 10, 10, 13, 30, 0), end: Date.UTC(2026, 10, 10, 16, 30, 0), uid: "reception-20261110@chandan-swetha", file: "Chandan-Swetha-Reception.ics" }
   };
+  // Invitation link goes first so WhatsApp shows its preview card at the top
+  const SITE_URL = "https://chandanj-333.github.io/";
   const SHARE_TEXT =
+    SITE_URL + "\n\n" +
     "You're invited to celebrate the wedding of Chandan & Swetha ❤️\n\n" +
     "Reception: Tuesday, 10 November 2026 · 7:00 PM onwards\n" +
     "Muhurtham: Wednesday, 11 November 2026 · 9:30 AM – 10:30 AM\n\n" +
-    "Soudhamini Kalyana Mantapa, Bengaluru";
+    "Soudhamini Kalyana Mantapa, Bengaluru\n" +
+    "Location: https://maps.app.goo.gl/Y8QNFMVbE6oM2g298";
   const RSVP_TEXT = "Hello! I would like to RSVP for Chandan & Swetha's wedding on 11 November 2026.";
 
   /* ================= helpers ================= */
@@ -114,13 +118,12 @@
   $('#copyAddressBtn') && $('#copyAddressBtn').addEventListener('click', () => copyText(VENUE.full + '\n' + VENUE.mapsLink).then(() => toast('Address copied')).catch(() => toast('Could not copy — please long-press the address')));
   function share() {
     const url = pageURL();
-    if (navigator.share) navigator.share({ title: COUPLE + ' – Wedding Invitation', text: SHARE_TEXT, url }).catch(err => { if (err && err.name !== 'AbortError') fallbackShare(url); });
+    if (navigator.share) navigator.share({ title: COUPLE + ' – Wedding Invitation', text: SHARE_TEXT }).catch(err => { if (err && err.name !== 'AbortError') fallbackShare(url); });
     else fallbackShare(url);
   }
   function fallbackShare(url) {
-    const isFile = location.protocol === 'file:';
-    openExternal('https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + (isFile ? '' : '\n' + url)));
-    if (!isFile) copyText(url).then(() => toast('Link copied — share it with your loved ones')).catch(() => {});
+    openExternal('https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT));
+    copyText(SITE_URL).then(() => toast('Link copied — share it with your loved ones')).catch(() => {});
   }
   $('#shareBtn') && $('#shareBtn').addEventListener('click', share);
   const rsvpBtn = $('#rsvpWhatsappBtn');
